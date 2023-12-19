@@ -138,8 +138,16 @@ G_DEFINE_TYPE_WITH_CODE (GstQml6GLSink, gst_qml6_gl_sink,
         "qtsink", 0, "Qt Video Sink");
     G_IMPLEMENT_INTERFACE (GST_TYPE_NAVIGATION,
         gst_qml6_gl_sink_navigation_interface_init));
-GST_ELEMENT_REGISTER_DEFINE_WITH_CODE (qml6glsink, "qml6glsink",
-    GST_RANK_NONE, GST_TYPE_QML6_GL_SINK, qt6_element_init (plugin));
+G_BEGIN_DECLS gboolean G_PASTE(gst_element_register_, qml6glsink)(GstPlugin *plugin)
+{
+    {
+        {
+            qt6_element_init(plugin);
+        }
+    }
+    return gst_element_register(plugin, "qml6glsink", GST_RANK_NONE, (gst_qml6_gl_sink_get_type()));
+}
+G_END_DECLS;
 
 static void
 gst_qml6_gl_sink_class_init (GstQml6GLSinkClass * klass)
@@ -559,7 +567,7 @@ gst_qml6_gl_sink_navigation_send_event (GstNavigation * navigation,
   GstQml6GLSink *qt_sink = GST_QML6_GL_SINK (navigation);
   GST_TRACE_OBJECT (qt_sink, "navigation event %" GST_PTR_FORMAT,
       structure);
-  //TODO(Zdanek) this will be available from GST 1.22
+  // TODO(zdanek) this will be available from gstreamer 1.22
 }
 
 static void gst_qml6_gl_sink_navigation_interface_init (GstNavigationInterface * iface)

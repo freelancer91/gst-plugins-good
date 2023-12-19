@@ -31,8 +31,10 @@ static gboolean
 plugin_init (GstPlugin * plugin)
 {
   gboolean ret = FALSE;
-
-  ret |= GST_ELEMENT_REGISTER (qml6glsink, plugin);
+// TODO(zdanek) fix after switching to gstreamer 1.20.0+
+// original code from 1.20.0
+//  ret |= GST_ELEMENT_REGISTER (qml6glsink, plugin);
+  ret |= gst_element_register_qml6glsink (plugin);
 
   return ret;
 }

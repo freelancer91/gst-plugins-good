@@ -279,6 +279,7 @@ static void
 gst_inter_pipe_notify_node_added (gpointer listener_name, gpointer _listener,
     gpointer data)
 {
+  (void)listener_name;
   GstInterPipeListenerPriv *listener_priv = _listener;
   GstInterPipeIListener *listener = listener_priv->listener;
   gchar *node_name = data;
@@ -336,6 +337,7 @@ static void
 gst_inter_pipe_notify_node_removed (gpointer _listener_name, gpointer _listener,
     gpointer data)
 {
+  (void)_listener_name;
   gchar *node_name = data;
   GstInterPipeListenerPriv *listener_priv = _listener;
   GstInterPipeIListener *listener = listener_priv->listener;

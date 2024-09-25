@@ -181,6 +181,7 @@ static void
 gst_inter_pipe_sink_update_node_name (GstInterPipeSink * sink,
     GParamSpec * pspec)
 {
+    (void)pspec;
   GstInterPipeINode *node;
 
   node = GST_INTER_PIPE_INODE (sink);
@@ -378,6 +379,7 @@ static void
 gst_inter_pipe_sink_intersect_listener_caps (gpointer key, gpointer value,
     gpointer user_data)
 {
+     (void)key;
   GstInterPipeSink *sink;
   GstInterPipeIListener *listener;
   GstCaps *caps_listener;
@@ -532,6 +534,7 @@ static void
 gst_inter_pipe_sink_forward_event (gpointer key, gpointer data,
     gpointer user_data)
 {
+    (void)key;
   GstInterPipeIListener *listener;
   GstInterPipeSink *sink;
   GstEvent *event;
@@ -646,6 +649,7 @@ gst_inter_pipe_sink_process_sample (GstInterPipeSink * sink, GstSample * sample)
 static GstFlowReturn
 gst_inter_pipe_sink_new_buffer (GstAppSink * asink, gpointer data)
 {
+    (void)data;
   GstInterPipeSink *sink;
   GstSample *sample;
 
@@ -661,6 +665,7 @@ gst_inter_pipe_sink_new_buffer (GstAppSink * asink, gpointer data)
 static GstFlowReturn
 gst_inter_pipe_sink_new_preroll (GstAppSink * asink, gpointer data)
 {
+    (void)data;
   GstInterPipeSink *sink;
   GstSample *sample;
 
@@ -691,6 +696,7 @@ gst_inter_pipe_sink_send_eos (gpointer key, gpointer data, gpointer user_data)
 static void
 gst_inter_pipe_sink_eos (GstAppSink * asink, gpointer data)
 {
+    (void)data;
   GstInterPipeSink *sink;
   GHashTable *listeners;
 

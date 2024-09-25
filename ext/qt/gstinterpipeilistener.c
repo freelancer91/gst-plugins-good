@@ -36,6 +36,7 @@ G_DEFINE_INTERFACE (GstInterPipeIListener, gst_inter_pipe_ilistener,
 static void
 gst_inter_pipe_ilistener_default_init (GstInterPipeIListenerInterface * iface)
 {
+    (void)iface;
   //NOP
 }
 

@@ -36,6 +36,7 @@ G_DEFINE_INTERFACE (GstInterPipeINode, gst_inter_pipe_inode, G_TYPE_OBJECT);
 static void
 gst_inter_pipe_inode_default_init (GstInterPipeINodeInterface * iface)
 {
+    (void)iface;
   //NOP
 }
 

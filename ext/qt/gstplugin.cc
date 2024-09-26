@@ -24,14 +24,15 @@
 
 #include "gstqtsink.h"
 #include "gstqtsrc.h"
+#include <gst/pbutils/pbutils.h>
+#if !GST_CHECK_PLUGINS_BASE_VERSION(1,24,0)
 #include "gstinterpipesrc.h"
 #include "gstinterpipesink.h"
-//#if __ANDROID__
-//#include "gstmpegtsmux.h"
-//#endif
+#endif
 #include <QtQml/QQmlApplicationEngine>
-
+#if !GST_CHECK_PLUGINS_BASE_VERSION(1,24,0)
 GST_DEBUG_CATEGORY_EXTERN (gst_inter_pipe_debug);
+#endif
 
 static gboolean
 plugin_init (GstPlugin * plugin)
@@ -43,7 +44,7 @@ plugin_init (GstPlugin * plugin)
           GST_RANK_NONE, GST_TYPE_QT_SRC);
   /* this means the plugin must be loaded before the qml engine is loaded */
   qmlRegisterType<QtGLVideoItem> ("org.freedesktop.gstreamer.GLVideoItem", 1, 0, "GstGLVideoItem");
-
+#if !GST_CHECK_PLUGINS_BASE_VERSION(1,24,0)
 //cheating here. I couldn't figure out how to include RidgeRun interpipes as its own thing,
 //so I'm sneaking it into the videosink plugin
   GST_DEBUG_CATEGORY_INIT (gst_inter_pipe_debug, "interpipe", 0,
@@ -53,10 +54,7 @@ plugin_init (GstPlugin * plugin)
                        GST_TYPE_INTER_PIPE_SRC);
   gst_element_register (plugin, "interpipesink", GST_RANK_NONE,
                        GST_TYPE_INTER_PIPE_SINK);
-//#if __ANDROID__
-//  gst_element_register (plugin, "mpegtsmux", GST_RANK_NONE,
-//                       GST_TYPE_MPEG_TS_MUX);
-//#endif
+#endif
   return TRUE;
 }
 
